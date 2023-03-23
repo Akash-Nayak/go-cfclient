@@ -1,4 +1,4 @@
-module github.com/cloudfoundry-community/go-cfclient
+module github.com/Akash-Nayak/go-cfclient
 
 go 1.15
 
