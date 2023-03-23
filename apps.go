@@ -493,11 +493,16 @@ func (c *Client) AppByGuid(guid string) (App, error) {
 // AppByName takes an appName, and GUIDs for a space and org, and performs
 // the API lookup with those query parameters set to return you the desired
 // App object.
-func (c *Client) AppByName(appName, spaceGuid, orgGuid string) (App, error) {
+func (c *Client) AppByName(appName string, spaceGuid string, orgGuid string, depth ...string) (App, error) {
 	query := url.Values{}
 	query.Add("q", fmt.Sprintf("organization_guid:%s", orgGuid))
 	query.Add("q", fmt.Sprintf("space_guid:%s", spaceGuid))
 	query.Add("q", fmt.Sprintf("name:%s", appName))
+	inlineRelationsDepth := "2"
+	if len(depth) > 0 {
+		inlineRelationsDepth = depth[0]
+	}
+	query.Set("inline-relations-depth", inlineRelationsDepth)
 	apps, err := c.ListAppsByQuery(query)
 	if err != nil {
 		return App{}, err
