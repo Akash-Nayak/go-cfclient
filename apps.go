@@ -16,6 +16,7 @@ import (
 	"time"
 
 	"github.com/pkg/errors"
+	"github.com/sirupsen/logrus"
 )
 
 type AppResponse struct {
@@ -326,9 +327,14 @@ func (c *Client) GetAppByGuidNoInlineCall(guid string) (App, error) {
 	return app, nil
 }
 
-func (c *Client) ListApps() ([]App, error) {
+func (c *Client) ListApps(depth ...string) ([]App, error) {
 	q := url.Values{}
-	q.Set("inline-relations-depth", "2")
+	inlineRelationsDepth := "2"
+	if len(depth) > 0 {
+		inlineRelationsDepth = depth[0]
+	}
+	logrus.Infof("\n\n =============\n inlineRelationsDepth = %s \n ===============\n\n", inlineRelationsDepth)
+	q.Set("inline-relations-depth", inlineRelationsDepth)
 	return c.ListAppsByQuery(q)
 }
 
