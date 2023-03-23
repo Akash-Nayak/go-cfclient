@@ -12,6 +12,7 @@ require (
 	github.com/onsi/gomega v1.4.3
 	github.com/oxtoacart/bpool v0.0.0-20150712133111-4e1c5567d7c2 // indirect
 	github.com/pkg/errors v0.8.1
+	github.com/sirupsen/logrus v1.9.0 // indirect
 	github.com/smartystreets/goconvey v0.0.0-20190330032615-68dc04aab96a
 	golang.org/x/net v0.0.0-20190311183353-d8887717615a
 	golang.org/x/oauth2 v0.0.0-20190130055435-99b60b757ec1
